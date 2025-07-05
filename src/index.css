@@ -161,14 +161,37 @@ svg {
   border: 1px solid var(--border) !important;
 }
 
-.bn-mantine .mantine-TextInput-input,
-.mantine-Button-root {
-  background-color: transparent !important;
+.mantine-Button-root, .mantine-TextInput-input  {
   border: solid 1px var(--border) !important;
   color: var(--primary-text) !important;
   font-weight: 400 !important;
   font-family: var(--font-primary) !important;
   transition: all 0.3s ease !important;
+}
+
+.mantine-TextInput-input {
+  background-color: transparent !important;
+}
+
+.mantine-Button-root {
+  background-color: var(--background) !important;
+}
+
+.bn-add-file-button {
+  background-color: var(--background-secondary) !important;
+  color: var(--primary-text) !important;
+}
+
+.bn-add-file-button:hover {
+  background-color: var(--background-terciary) !important;
+}
+
+.bn-file-block-content-wrapper {
+  outline: none !important;
+}
+
+.mantine-Tabs-tab {
+  border-color: none !important;
 }
 
 .bn-editor {
@@ -226,12 +249,6 @@ svg {
 
 .custom-container {
   max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
   color: var(--primary-text);
   background-color: var(--background);
 }
