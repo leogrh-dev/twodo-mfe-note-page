@@ -1,7 +1,6 @@
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 export async function uploadFileToApi(file: File): Promise<string> {
-  console.log('[UPLOAD] API_URL:', API_URL);
   const formData = new FormData();
   formData.append('file', file);
 

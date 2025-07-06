@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { debounce } from 'lodash-es';
 import { NoteTitle } from './NoteTitle';
 import { BlockEditor } from '../../../frameworks/blocknotejs/BlockEditor';
-import type { NotePageProps } from '../../../application/ports/note-storage.port';
+import type { NotePageProps } from '../../../core/entities/note-page-props';
 
 export function NotePage({ title, content, onTitleChange, onContentChange }: NotePageProps) {
   const [localTitle, setLocalTitle] = useState(title);
@@ -12,12 +13,23 @@ export function NotePage({ title, content, onTitleChange, onContentChange }: Not
     }
   }, [title]);
 
+  const debouncedChange = useCallback(
+    debounce((value: string) => {
+      onTitleChange(value.trim());
+    }, 500),
+    []
+  );
+
+  const handleTitleChange = (value: string) => {
+    setLocalTitle(value);
+    debouncedChange(value);
+  };
+
   return (
     <div className="custom-container">
       <NoteTitle
         value={localTitle}
-        onChange={setLocalTitle}
-        onBlur={() => onTitleChange(localTitle.trim())}
+        onChange={handleTitleChange}
       />
       <BlockEditor content={content} onChange={onContentChange} />
     </div>

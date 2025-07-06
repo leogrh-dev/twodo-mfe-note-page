@@ -2,7 +2,7 @@ import '../index.css';
 import React from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { NotePage } from '../interface-adapters/presenters/note-page/NotePage';
-import type { NotePageProps } from '../application/ports/note-storage.port';
+import type { NotePageProps } from '../core/entities/note-page-props';
 
 const roots = new Map<HTMLElement, Root>();
 

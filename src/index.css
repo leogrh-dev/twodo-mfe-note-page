@@ -1,72 +1,55 @@
-/* ========================================
-   IMPORTS
-======================================== */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
-/* ========================================
-   CSS CUSTOM PROPERTIES (DESIGN TOKENS)
-======================================== */
 :root {
-  /* Primary Colors */
   --primary: #1037B8;
   --primary-light: #254dd1;
   --primary-dark: #001679;
   --primary-contrast: #000000;
 
-  /* Background Colors */
   --background: #ffffff;
   --background-secondary: #efefef;
   --background-terciary: #f5f5f5;
 
-  /* Surface Colors */
   --surface: #ffffff;
   --surface-secondary: #fafafa;
   --surface-hover: #f5f5f5;
   --surface-active: #e6f7ff;
 
-  /* Text Colors */
   --primary-text: #000000;
   --secondary-text: #595959;
   --disabled-text: #bfbfbf;
   --hint-text: #8c8c8c;
   --text-on-primary: #ffffff;
 
-  /* Border Colors */
   --border: #d9d9d9;
   --border-light: #f0f0f0;
   --border-dark: #bfbfbf;
 
-  /* Special Colors */
   --sidemenu-hover: rgba(0, 0, 0, 0.07);
   --sidemenu-focus: rgba(0, 0, 0, 0.14);
   --contrast: #060606;
   --contrast-text: #ffffff;
 
-  /* Shadows */
   --shadow: rgba(0, 0, 0, 0.1);
   --shadow-light: rgba(0, 0, 0, 0.06);
   --shadow-dark: rgba(0, 0, 0, 0.15);
   --shadow-elevation: 0 2px 8px rgba(0, 0, 0, 0.15);
 
-  /* Status Colors */
   --success: #52c41a;
   --warning: #faad14;
   --error: #ff4d4f;
   --info: #1890ff;
 
-  /* Status Background Colors */
   --success-bg: #f6ffed;
   --warning-bg: #fffbe6;
   --error-bg: #fff2f0;
   --info-bg: #e6f7ff;
 
-  /* Opacity Values */
   --hover-opacity: 0.8;
   --active-opacity: 0.9;
   --disabled-opacity: 0.4;
 
-  /* Typography Scale */
   --font-size-xsmall: 0.75rem;
   --font-size-small: 0.875rem;
   --font-size-base: 1rem;
@@ -76,16 +59,11 @@
   --font-size-3xl: 2.5rem;
   --font-size-4xl: 3rem;
 
-  /* Font Families */
   --font-primary: "DM Sans", "Open Sans", sans-serif;
 }
 
-/* ========================================
-   BASE STYLES
-======================================== */
 * {
   font-family: var(--font-primary) !important;
-  transition: all 0.3s ease !important;
 }
 
 p,
@@ -102,11 +80,10 @@ svg {
   color: var(--secondary-text) !important;
 }
 
-/* ========================================
-   SHARED STYLES (COMMON PATTERNS)
-======================================== */
+.bn-mantine * {
+  transition: all 0.3s ease !important;
+}
 
-/* Common elevated surfaces with border and shadow */
 .bn-mantine .bn-toolbar,
 .bn-mantine .mantine-Menu-dropdown,
 .bn-mantine .bn-suggestion-menu,
@@ -120,7 +97,6 @@ svg {
   box-shadow: var(--shadow-elevation) !important;
 }
 
-/* Common background elements */
 .bn-toolbar .mantine-Button-root,
 .bn-mantine .mantine-Menu-label,
 .bn-mantine .mantine-Menu-item {
@@ -133,7 +109,6 @@ svg {
   color: var(--primary-text) !important;
 }
 
-/* Common hover states */
 .bn-side-menu .mantine-UnstyledButton-root:hover,
 .bn-toolbar .mantine-ActionIcon-root:hover,
 .bn-toggle-button:hover,
@@ -281,8 +256,26 @@ svg {
   font-style: normal !important;
 }
 
+.bn-file-loading-preview {
+  color: var(--primary-text) !important;
+  font-weight: 400 !important;
+}
+
 .custom-container {
   max-width: 720px;
   color: var(--primary-text);
   background-color: var(--background);
+}
+
+.note-title-textarea {
+  width: 100%;
+  font-size: 2.5rem;
+  font-weight: bold;
+  resize: none;
+  background-color: transparent;
+  color: var(--primary-text);
+  outline: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
