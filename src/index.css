@@ -85,6 +85,7 @@
 ======================================== */
 * {
   font-family: var(--font-primary) !important;
+  transition: all 0.3s ease !important;
 }
 
 p,
@@ -135,7 +136,6 @@ svg {
 /* Common hover states */
 .bn-side-menu .mantine-UnstyledButton-root:hover,
 .bn-toolbar .mantine-ActionIcon-root:hover,
-.mantine-Tabs-tab[data-active]:hover,
 .bn-toggle-button:hover,
 .bn-mantine .bn-suggestion-menu-item[aria-selected=true],
 .bn-mantine .bn-suggestion-menu-item:hover {
@@ -152,8 +152,6 @@ svg {
   border-radius: 5px !important;
 }
 
-
-
 .bn-mantine .bn-extend-button,
 .bn-toolbar .mantine-ActionIcon-root,
 .bn-mt-suggestion-menu-item-section {
@@ -161,7 +159,8 @@ svg {
   border: 1px solid var(--border) !important;
 }
 
-.mantine-Button-root, .mantine-TextInput-input  {
+.mantine-Button-root,
+.mantine-TextInput-input {
   border: solid 1px var(--border) !important;
   color: var(--primary-text) !important;
   font-weight: 400 !important;
@@ -169,11 +168,33 @@ svg {
   transition: all 0.3s ease !important;
 }
 
+.mantine-FileInput-input {
+  border: none !important;
+  background-color: transparent !important;
+}
+
+.mantine-FileInput-wrapper {
+  border: solid 1px var(--border) !important;
+  transition: all 0.3s ease !important;
+}
+
+.mantine-FileInput-wrapper:hover,
+.mantine-FileInput-wrapper:hover .mantine-InputPlaceholder-placeholder {
+  border-color: var(--primary-light) !important;
+  color: var(--primary) !important;
+}
+
+.mantine-InputPlaceholder-placeholder {
+  color: var(--primary-text) !important;
+  font-weight: 400 !important;
+}
+
 .mantine-TextInput-input {
   background-color: transparent !important;
 }
 
 .mantine-Button-root {
+  width: 100% !important;
   background-color: var(--background) !important;
 }
 
@@ -226,8 +247,21 @@ svg {
   border: var(--background) !important;
 }
 
+.mantine-Tabs-tab {
+  background-color: var(--background) !important;
+  color: var(--primary-text) !important;
+  border-color: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.mantine-Tabs-tab:hover {
+  background-color: var(--surface-hover) !important;
+  color: var(--primary-text) !important;
+}
+
 .mantine-Tabs-tab[data-active] {
   color: var(--primary-text) !important;
+  font-weight: 600 !important;
 }
 
 .mantine-Button-root:hover {

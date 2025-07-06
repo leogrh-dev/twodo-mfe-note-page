@@ -4,6 +4,7 @@ import { BlockNoteView } from '@blocknote/mantine';
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
 import { ptBr } from '../../infrastructure/i18n/ptBr';
+import { uploadFileToApi } from '../../infrastructure/api/upload.api'
 
 interface BlockEditorProps {
   content: string;
@@ -16,6 +17,7 @@ export function BlockEditor({ content, onChange }: BlockEditorProps) {
   const editor = useCreateBlockNote({
     initialContent,
     dictionary: ptBr,
+    uploadFile: uploadFileToApi,
   });
 
   useEffect(() => {
