@@ -76,6 +76,10 @@ h6 {
   color: var(--primary-text);
 }
 
+p {
+  line-height: 2rem;
+}
+
 svg {
   color: var(--secondary-text) !important;
 }

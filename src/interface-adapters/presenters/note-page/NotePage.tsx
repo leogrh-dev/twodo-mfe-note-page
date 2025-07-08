@@ -6,18 +6,21 @@ import type { NotePageProps } from '../../../core/entities/note-page-props';
 
 export function NotePage({ title, content, onTitleChange, onContentChange }: NotePageProps) {
   const [localTitle, setLocalTitle] = useState(title);
+  const [contentKey, setContentKey] = useState(() => Date.now());
 
   useEffect(() => {
-    if (title !== localTitle) {
-      setLocalTitle(title);
-    }
+    setLocalTitle(title);
   }, [title]);
+
+  useEffect(() => {
+    setContentKey(Date.now());
+  }, [content]);
 
   const debouncedChange = useCallback(
     debounce((value: string) => {
       onTitleChange(value.trim());
     }, 500),
-    []
+    [onTitleChange]
   );
 
   const handleTitleChange = (value: string) => {
@@ -27,11 +30,9 @@ export function NotePage({ title, content, onTitleChange, onContentChange }: Not
 
   return (
     <div className="custom-container">
-      <NoteTitle
-        value={localTitle}
-        onChange={handleTitleChange}
-      />
-      <BlockEditor content={content} onChange={onContentChange} />
+      <NoteTitle value={localTitle} onChange={handleTitleChange} />
+
+      <BlockEditor key={contentKey} content={content} onChange={onContentChange} />
     </div>
   );
 }

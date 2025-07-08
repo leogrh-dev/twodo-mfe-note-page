@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import { useCreateBlockNote } from '@blocknote/react';
 import { BlockNoteView } from '@blocknote/mantine';
 import '@blocknote/core/fonts/inter.css';
@@ -13,7 +13,13 @@ interface BlockEditorProps {
 }
 
 export function BlockEditor({ content, onChange }: BlockEditorProps) {
-  const initialContent = content ? JSON.parse(content) : undefined;
+  const initialContent = useMemo(() => {
+    try {
+      return content ? JSON.parse(content) : undefined;
+    } catch {
+      return undefined;
+    }
+  }, [content]);
 
   const editor = useCreateBlockNote({
     initialContent,
