@@ -1,8 +1,10 @@
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useMemo, useState } from 'react';
 import { useCreateBlockNote } from '@blocknote/react';
 import { BlockNoteView } from '@blocknote/mantine';
+
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
+
 import { ptBr } from '../../infrastructure/i18n/ptBr';
 import { uploadFileToApi } from '../../infrastructure/api/upload.api';
 import { deleteFileFromApi } from '../../infrastructure/api/delete.api';
@@ -28,9 +30,31 @@ export function BlockEditor({ content, onChange }: BlockEditorProps) {
   });
 
   const previousUrls = useRef<Set<string>>(extractUrls(initialContent || []));
+  const [isAnyMenuOpen, setIsAnyMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const checkMenus = () => {
+      const slashMenu = document.querySelector('.bn-suggestion-menu');
+      const toolbar = document.querySelector('.bn-toolbar');
+      setIsAnyMenuOpen(!!slashMenu || !!toolbar);
+    };
+
+    const observer = new MutationObserver(checkMenus);
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    checkMenus();
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = editor.onChange(async () => {
+      if (isAnyMenuOpen) return;
+
       const doc = editor.document;
       onChange(JSON.stringify(doc));
 
@@ -51,7 +75,7 @@ export function BlockEditor({ content, onChange }: BlockEditorProps) {
     return () => {
       if (typeof unsubscribe === 'function') unsubscribe();
     };
-  }, [editor, onChange]);
+  }, [editor, onChange, isAnyMenuOpen]);
 
   return (
     <BlockNoteView
